@@ -1,0 +1,32 @@
+.herosection-main{
+    width: 100%;
+    height: auto;
+    padding: 40px 150px;
+    display: flex;
+justify-content: space-between;}
+
+.herosection-text{
+    width: 45%;
+    height: auto;
+    padding-top: 70px;
+}
+.herosection-text h3{
+    font-size: 39px;
+}
+.herosection-text span{
+    color: #EC6102;
+}
+.herosection-text P{
+    padding:20PX 0 ;
+        color: #424652;
+}
+.herosection-text button{
+    font-size: 16px;
+    background-color: #EC6102;
+    color: white;
+    font-weight: 600;
+    padding: 8px 30px;
+    border-radius: 20px;
+    margin-top: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,40 @@
+.brand-slider-container {
+  overflow: hidden;
+  width: 100%;
+  padding: 0 150px;
+  margin: 20px auto;
+  padding: 34px 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(216, 214, 214);
+  border-top: 1px solid rgb(216, 214, 214);
+}
+
+.slider-track {
+  display: flex;
+  width: 200%;
+  animation: scroll 30s linear infinite;
+  gap: 90px;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 200px;
+  margin: 0 0px;
+}
+
+.slide img {
+  width: 70%;
+  height: 80px;
+  object-fit: contain;
+}
+
+/* Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
