@@ -24,30 +24,10 @@ app.use("/", admin);
 
 // 🔹 Stripe Checkout Route
 app.post("/create-checkout-session", async (req, res) => {
+  const { name, email, phone, zipcode, state, amount } = req.body;
+  if (!name || !email) return res.status(400).json({ error: "Name and email are required" });
+
   try {
-    if (!req.body) {
-      return res.status(400).json({ error: "Request body is missing" });
-    }
-
-    const { name, email, phone, zipcode, state } = req.body;
-    
-    if (!name || !email) {
-      return res.status(400).json({ error: "Name and email are required" });
-    }
-
-    const amount = 539900;
-
-    // Save order in DB
-    const query = `INSERT INTO orders (name, email, phone, zipcode, state, amount)
-                   VALUES (?, ?, ?, ?, ?, ?)`;
-    db.query(query, [name, email, phone, zipcode, state, amount], (err, result) => {
-      if (err) {
-        console.error("DB Error:", err);
-        return res.status(500).json({ error: "Database error" });
-      }
-    //   console.log("Order saved with ID:", result.insertId);
-    });
-
     // Stripe session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -56,22 +36,30 @@ app.post("/create-checkout-session", async (req, res) => {
           price_data: {
             currency: "inr",
             product_data: { name: "LMS Course" },
-            unit_amount: amount,
+            unit_amount: amount || 539900,
           },
           quantity: 1,
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:5173/course",
-      cancel_url: "http://localhost:5173/cancel",
+      success_url: `${process.env.FRONTEND_URL}/course`,
+      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+    });
+
+    // Save order in DB
+    const query = `INSERT INTO orders (name, email, phone, zipcode, state, amount)
+                   VALUES (?, ?, ?, ?, ?, ?)`;
+    db.query(query, [name, email, phone, zipcode, state, amount || 539900], (err, result) => {
+      if (err) console.error("DB Error:", err);
     });
 
     res.json({ id: session.id });
   } catch (err) {
     console.error("Stripe error:", err);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: "Stripe session creation failed" });
   }
 });
+
 
 
 
