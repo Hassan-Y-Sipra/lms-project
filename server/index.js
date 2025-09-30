@@ -45,7 +45,7 @@ app.post("/create-checkout-session", async (req, res) => {
         console.error("DB Error:", err);
         return res.status(500).json({ error: "Database error" });
       }
-      console.log("Order saved with ID:", result.insertId);
+    //   console.log("Order saved with ID:", result.insertId);
     });
 
     // Stripe session

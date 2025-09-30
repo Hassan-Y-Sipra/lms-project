@@ -208,6 +208,9 @@ const Checkout = () => {
                 >
                   Proceed to Pay ₹5399
                 </button>
+                
+
+
               </form>
             </div>
           </div>
