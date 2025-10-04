@@ -68,14 +68,15 @@ const Checkout = () => {
               {course.map((item) => (
                 <div key={item.id}>
                   <h1 className="text-2xl font-bold">{item.title}</h1>
+                   <div className="mt-2">
+              <h3 className="text-xl font-semibold text-amber-500">{item.price}</h3>
+            </div>
                 </div>
               ))}
-              <span className="text-gray-500">By Valuda's Tech Park</span>
+              <span className="text-gray-500 text-[12px]">By Valuda's Tech Park</span>
+           
             </div>
 
-            <div>
-              <h3 className="text-xl font-semibold text-amber-500">₹5399</h3>
-            </div>
 
             <div className="space-y-4">
               <img
@@ -101,11 +102,11 @@ const Checkout = () => {
                   purchase using this link:
                 </p>
                 <a
-                  href="https://academy.dhruvrathee.com/l/9d6d43de2e"
+                  href="https://valudas.com/"
                   target="_blank"
                   className="text-blue-400 hover:text-blue-500 "
                 >
-                  https://academy.dhruvrathee.com/l/9d6d43de2e
+              https://valudas.com/
                 </a>
               </div>
             </div>
@@ -117,7 +118,7 @@ const Checkout = () => {
               <h3 className="text-xl font-bold text-gray-800">
                 Payment Details
               </h3>
-              <p className="text-gray-500 ">
+              <p className="text-gray-500 mt-2">
                 Complete your purchase by providing your payment details.
               </p>
             </div>
@@ -202,12 +203,18 @@ const Checkout = () => {
                   {/* baki states */}
                 </select>
 
-                <button
+
+                {course.map((item)=>(
+                  <div>
+<button
                   type="submit"
                   className="w-full bg-amber-500 hover:bg-amber-400 text-white font-bold py-3 rounded-lg transition-colors"
                 >
-                  Proceed to Pay ₹5399
+                 Proceed to pay &nbsp; &#8377;{item.price}
                 </button>
+                  </div>
+                ))}
+                
                 
 
 

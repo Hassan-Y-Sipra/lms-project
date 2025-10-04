@@ -102,7 +102,7 @@ const Module = () => {
         </div>
 
         <div className="w-full flex gap-10 px-8">
-          <div className="w-5xl   space-y-4  ">
+          <div className="w-5xl   space-y-4 ">
             {module.map((item, index) => (
               <div
                 key={item.id}
